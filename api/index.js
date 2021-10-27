@@ -10,11 +10,8 @@ app.get("/home", (req, res) => {
 
 const port = config.appPort;
 
-app.listen(
-  (port,
-  () => {
-    console.log(`server listening on PORT:${port}`);
-  })
-);
+app.listen(port, () => {
+  console.log(`server listening on PORT:${port}`);
+});
 
 console.log("Hello World!");
