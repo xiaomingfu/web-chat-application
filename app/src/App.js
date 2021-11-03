@@ -5,7 +5,7 @@ import Login from "./components/Auth/Login";
 import Register from "./components/Auth/Register";
 import Chat from "./components/Chat/Chat";
 
-import "./App.css";
+import "./App.scss";
 
 function App() {
   return (
