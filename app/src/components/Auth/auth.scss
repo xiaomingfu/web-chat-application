@@ -10,16 +10,30 @@
 
     & > div {
       display: flex;
-      flex-direction: row;
-      min-width: 500px;
-      margin-top: 2.5rem;
+      flex-direction: column;
+      min-width: 100%;
+      margin-top: 10px;
       background-color: white;
       border-radius: 20px;
+
+      @media (min-width: 800px) {
+        flex-direction: row;
+        min-width: 500px;
+        margin-top: 2.5rem;
+      }
 
       #image-section {
         background-color: $bg-light;
         border-top-left-radius: 20px;
+        border-top-right-radius: 20px;
         border-bottom-left-radius: 20px;
+        border-bottom-right-radius: 20px;
+
+        @media (min-width: 800px) {
+          border-top-left-radius: 20px;
+          border-bottom-left-radius: 20px;
+        }
+
         img {
           max-height: 300px;
           min-width: 100%;
@@ -27,8 +41,11 @@
       }
 
       #form-section {
-        min-width: 300px;
+        min-width: 100%;
 
+        @media (min-width: 800px) {
+          min-width: 300px;
+        }
         h2 {
           text-align: center;
         }
@@ -37,7 +54,8 @@
           padding: 20px;
 
           .input-field {
-            input {
+            input,
+            select {
               height: 40px;
               width: 100%;
               box-sizing: border-box;
