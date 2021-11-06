@@ -26,14 +26,14 @@ module.exports = {
         firstName: "Xiaoming",
         lastName: "Fu",
         email: "xmingfu@gmail.com",
-        password: "secret",
+        password: bcrypt.hashSync("secret", 10),
         gender: "female",
       },
       {
         firstName: "Jane",
         lastName: "Doe",
         email: "jane.doe@gmail.com",
-        password: "secret",
+        password: bcrypt.hashSync("secret", 10),
         gender: "female",
       },
     ]);
