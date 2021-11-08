@@ -20,11 +20,36 @@
     height: 100%;
     position: relative;
     cursor: pointer;
+    color: white;
 
     p {
       display: flex;
       align-self: center;
+      margin-right: 5px;
+    }
+
+    img {
+      display: flex;
       color: white;
+      align-self: center;
+      margin-right: 5px;
+      border-radius: 20px;
+    }
+
+    #profile-options {
+      position: absolute;
+      top: 50px;
+      padding: 0 5px;
+      right: 5px;
+      background-color: white;
+      border-radius: 5px;
+      border: 1px solid #d9d9d9;
+      z-index: 9999;
+
+      p {
+        color: black;
+        margin: 10px 5px;
+      }
     }
   }
 }
