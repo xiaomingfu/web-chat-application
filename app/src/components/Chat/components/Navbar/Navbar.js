@@ -9,7 +9,7 @@ const Navbar = () => {
     <div id="navbar" className="card-shadow">
       <h2>Chat.io</h2>
       <div id="profile-menu">
-        <img src="" alt="Avatar" />
+        <img width="40px" height="40px" src={user.avatar} alt="Avatar" />
         <p>
           {user.firstName} {user.LastName}
         </p>
