@@ -10,7 +10,7 @@ import "../../App.scss";
 const Login = ({ history }) => {
   const dispatch = useDispatch();
 
-  const [email, setEmail] = useState("xmingfu@gmail.com");
+  const [email, setEmail] = useState("john.doe@gmail.com");
   const [password, setPassword] = useState("secret");
 
   const submitForm = (e) => {
