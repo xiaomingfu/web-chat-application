@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React, { Fragment, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { logout } from "../../../../store/actions/auth";
+import Model from "../../../Model/Model.js";
 
 import "./Navbar.scss";
 
@@ -33,6 +34,14 @@ const Navbar = () => {
             </p>
           </div>
         )}
+
+        {
+          <Model>
+            <Fragment key="header">Model Header</Fragment>
+            <Fragment key="body">Model Body</Fragment>
+            <Fragment key="footer">Model Footer</Fragment>
+          </Model>
+        }
       </div>
     </div>
   );
