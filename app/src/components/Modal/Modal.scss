@@ -1,6 +1,6 @@
 @import "../../assets/scss/variables";
 
-.model-mask {
+.modal-mask {
   position: fixed;
   z-index: 9998;
   top: 0;
@@ -11,10 +11,10 @@
   display: table;
   transition: opacity 0.3s ease;
 
-  .model-wrapper {
+  .modal-wrapper {
     margin: 2rem 10px 10px 10px;
 
-    .model-container {
+    .modal-container {
       max-width: 400px;
       margin: 0px auto;
       border-radius: 2px;
@@ -22,7 +22,7 @@
       transition: all 0.3s ease;
       font-family: Helvetica, Arial, sans-serif;
 
-      .model-header {
+      .modal-header {
         background-color: $bg-main;
         padding: 10px;
         color: white;
@@ -31,7 +31,7 @@
         text-align: center;
       }
 
-      .model-body {
+      .modal-body {
         padding: 20px;
         background-color: white;
         text-align: left;
@@ -45,7 +45,7 @@
         }
       }
 
-      .model-footer {
+      .modal-footer {
         padding: 10px;
         background-color: white;
         display: flex;
