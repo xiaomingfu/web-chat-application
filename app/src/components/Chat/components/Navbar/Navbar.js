@@ -1,7 +1,7 @@
 import React, { Fragment, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { logout } from "../../../../store/actions/auth";
+import { logout, updateProfile } from "../../../../store/actions/auth";
 import Modal from "../../../Modal/Modal.js";
 
 import "./Navbar.scss";
@@ -12,7 +12,6 @@ const Navbar = () => {
 
   const [showProfile, setShowProfile] = useState(false);
   const [showModal, setShowModal] = useState(false);
-
   const [firstName, setFirstName] = useState(user.firstName);
   const [lastName, setLastName] = useState(user.lastName);
   const [password, setPassword] = useState("");
@@ -23,13 +22,18 @@ const Navbar = () => {
   const submitForm = (e) => {
     e.preventDefault();
 
-    const form = { firstName, lastName, email, avatar, gender, password };
+    const form = { firstName, lastName, email, avatar, gender };
+    if (password.length > 0) {
+      form.password = password;
+    }
 
     const formData = new FormData();
 
     for (const key in form) {
       formData.append(key, form[key]);
     }
+
+    dispatch(updateProfile(formData)).then(() => setShowModal(false));
   };
 
   return (
@@ -118,7 +122,9 @@ const Navbar = () => {
               </form>
             </Fragment>
             <Fragment key="footer">
-              <button className="btn-success">Update</button>
+              <button className="btn-success" onClick={submitForm}>
+                Update
+              </button>
             </Fragment>
           </Modal>
         )}

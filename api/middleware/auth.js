@@ -3,6 +3,7 @@ const config = require("../config/app");
 
 exports.auth = (req, res, next) => {
   const authHeader = req.headers["Authorization"];
+  console.log(authHeader);
   const token = authHeader && authHeader.split(" ")[1];
   console.log(token);
 
