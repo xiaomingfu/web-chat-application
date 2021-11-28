@@ -30,7 +30,7 @@ module.exports = (sequelize, DataTypes) => {
             : `${config.appUrl}:${config.appPort}/chat/${id}/${content}`;
         },
       },
-      ChatId: DataTypes.INTEGER,
+      chatId: DataTypes.INTEGER,
       fromUserId: DataTypes.INTEGER,
     },
     {
