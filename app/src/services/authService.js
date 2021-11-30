@@ -1,12 +1,13 @@
-// import API from "./api";
-import axios from "axios";
+import API from "./api";
+// import axios from "axios";
 
-const API = axios.create({
-  baseURL: "http://localhost:3000/",
-  headers: {
-    Accept: "application/json",
-  },
-});
+// const API = axios.create({
+//   baseURL: "http://localhost:3000/",
+//   headers: {
+//     Accept: "application/json",
+//     Authorization: `Bearer ${localStorage.getItem("token")}` || "",
+//   },
+// });
 
 const AuthService = {
   login: (data) => {

@@ -1,6 +1,6 @@
 import axios from "axios";
-import store from "../store";
 import { logout } from "../store/actions/auth";
+import store from "../store";
 
 const API = axios.create({
   baseUrl: "http://127.0.0.1:3000/",
