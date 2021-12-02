@@ -2,10 +2,8 @@ const jwt = require("jsonwebtoken");
 const config = require("../config/app");
 
 exports.auth = (req, res, next) => {
-  const authHeader = req.headers["Authorization"];
-  console.log(authHeader);
+  const authHeader = req.headers["authorization"];
   const token = authHeader && authHeader.split(" ")[1];
-  console.log(token);
 
   if (!token) {
     return res.status(401).json({ error: "Missing token" });
@@ -13,7 +11,7 @@ exports.auth = (req, res, next) => {
 
   jwt.verify(token, config.appKey, (err, user) => {
     if (err) {
-      return res.status(401).json({ error });
+      return res.status(401).json({ error: err });
     }
     req.user = user;
     console.log(user);

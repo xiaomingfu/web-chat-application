@@ -3,6 +3,6 @@ const { index } = require("../controllers/chatController");
 const { validate } = require("../validators");
 const { auth } = require("../middleware/auth");
 
-router.get("/", index);
+router.get("/", [auth, validate], index);
 
 module.exports = router;
