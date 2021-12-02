@@ -1,13 +1,4 @@
 import API from "./api";
-// import axios from "axios";
-
-// const API = axios.create({
-//   baseURL: "http://localhost:3000/",
-//   headers: {
-//     Accept: "application/json",
-//     Authorization: `Bearer ${localStorage.getItem("token")}` || "",
-//   },
-// });
 
 const AuthService = {
   login: (data) => {
@@ -48,14 +39,14 @@ const AuthService = {
   },
 
   logout: () => {
-    API.defaults.headers["Authorization"] = "";
+    API.defaults.headers["authorization"] = "";
     localStorage.removeItem("user");
     localStorage.removeItem("token");
   },
 };
 
 const setHeadersAndStorage = ({ user, token }) => {
-  API.defaults.headers["Authorization"] = `Bearer ${token}`;
+  API.defaults.headers["authorization"] = `Bearer ${token}`;
   localStorage.setItem("user", JSON.stringify(user));
   localStorage.setItem("token", token);
 };

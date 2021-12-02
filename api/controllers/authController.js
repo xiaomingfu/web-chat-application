@@ -40,6 +40,6 @@ exports.register = async (req, res) => {
 
 const generateToken = (user) => {
   delete user.password;
-  const token = jwt.sign(user, config.appKey, { expiresIn: 5 });
+  const token = jwt.sign(user, config.appKey, { expiresIn: 360 });
   return { ...{ user }, ...{ token } };
 };
