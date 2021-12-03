@@ -33,7 +33,7 @@ exports.index = async (req, res) => {
     ],
   });
 
-  return res.send(user.Chats);
+  return res.json(user.Chats);
 };
 
 exports.create = async (req, res) => {
@@ -41,7 +41,7 @@ exports.create = async (req, res) => {
   console.log(req.body);
   console.log(req.user);
 
-  const t = await sequelize.transaction();
+  // const t = await sequelize.transaction();
   try {
     const user = await User.findOne({
       where: {
@@ -72,23 +72,20 @@ exports.create = async (req, res) => {
       });
     }
 
-    const chat = await Chat.create({ type: "dual" }, { transaction: t });
+    const chat = await Chat.create({ type: "dual" });
 
-    await ChatUser.bulkCreate(
-      [
-        {
-          chatId: chat.id,
-          userId: req.user.id,
-        },
-        {
-          chatId: chat.id,
-          userId: partnerId,
-        },
-      ],
-      { transaction: t }
-    );
+    await ChatUser.bulkCreate([
+      {
+        chatId: chat.id,
+        userId: req.user.id,
+      },
+      {
+        chatId: chat.id,
+        userId: partnerId,
+      },
+    ]);
 
-    await t.commit();
+    // await t.commit();
 
     const chatNew = await Chat.findOne({
       where: {
@@ -108,9 +105,37 @@ exports.create = async (req, res) => {
         },
       ],
     });
-    return res.send(chatNew);
+    return res.json(chatNew);
   } catch (e) {
-    await t.rollback();
+    // await t.rollback();
     return res.status(500).json({ status: "Error", message: e.message });
   }
+};
+
+exports.messages = async (req, res) => {
+  const limit = 10;
+  const page = req.query.page || 1;
+  const offset = page > 1 ? page * limit : 0;
+
+  const messages = await Message.findAndCountAll({
+    where: {
+      chatId: req.query.id,
+    },
+    limit,
+    offset,
+  });
+
+  const totalPages = Math.ceil(messages.count / limit);
+
+  if (page > totalPages) return res.json({ data: { messges: [] } });
+
+  const result = {
+    messages: messages.rows,
+    pagination: {
+      page,
+      totalPages,
+    },
+  };
+
+  return res.json(result);
 };
