@@ -4,7 +4,7 @@ const Chat = models.Chat;
 const Message = models.Message;
 const ChatUser = models.ChatUser;
 const { Op } = require("sequelize");
-const sequelize = require("sequelize");
+const { sequelize } = models;
 
 exports.index = async (req, res) => {
   const user = await User.findOne({
@@ -38,8 +38,6 @@ exports.index = async (req, res) => {
 
 exports.create = async (req, res) => {
   const { partnerId } = req.body;
-  console.log(req.body);
-  console.log(req.user);
 
   const t = await sequelize.transaction();
   try {
@@ -57,7 +55,7 @@ exports.create = async (req, res) => {
             {
               model: ChatUser,
               where: {
-                useId: partnerId,
+                userId: partnerId,
               },
             },
           ],
@@ -72,18 +70,21 @@ exports.create = async (req, res) => {
       });
     }
 
-    const chat = await Chat.create({ type: "dual" });
+    const chat = await Chat.create({ type: "dual" }, { transaction: t });
 
-    await ChatUser.bulkCreate([
-      {
-        chatId: chat.id,
-        userId: req.user.id,
-      },
-      {
-        chatId: chat.id,
-        userId: partnerId,
-      },
-    ]);
+    await ChatUser.bulkCreate(
+      [
+        {
+          chatId: chat.id,
+          userId: req.user.id,
+        },
+        {
+          chatId: chat.id,
+          userId: partnerId,
+        },
+      ],
+      { transaction: t }
+    );
 
     await t.commit();
 
@@ -149,7 +150,7 @@ exports.deleteChat = async (req, res) => {
     });
     return res.json({
       status: "Success",
-      message: "Chat deleted successfullyjhnjh",
+      message: "Chat deleted successfully",
     });
   } catch (e) {
     return res.status(500).json({ status: "Error", message: e.message });
