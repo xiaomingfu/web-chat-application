@@ -41,7 +41,7 @@ exports.create = async (req, res) => {
   console.log(req.body);
   console.log(req.user);
 
-  // const t = await sequelize.transaction();
+  const t = await sequelize.transaction();
   try {
     const user = await User.findOne({
       where: {
@@ -85,7 +85,7 @@ exports.create = async (req, res) => {
       },
     ]);
 
-    // await t.commit();
+    await t.commit();
 
     const chatNew = await Chat.findOne({
       where: {
@@ -107,7 +107,7 @@ exports.create = async (req, res) => {
     });
     return res.json(chatNew);
   } catch (e) {
-    // await t.rollback();
+    await t.rollback();
     return res.status(500).json({ status: "Error", message: e.message });
   }
 };
@@ -138,4 +138,20 @@ exports.messages = async (req, res) => {
   };
 
   return res.json(result);
+};
+
+exports.deleteChat = async (req, res) => {
+  try {
+    await Chat.destroy({
+      where: {
+        id: req.params.id,
+      },
+    });
+    return res.json({
+      status: "Success",
+      message: "Chat deleted successfullyjhnjh",
+    });
+  } catch (e) {
+    return res.status(500).json({ status: "Error", message: e.message });
+  }
 };
