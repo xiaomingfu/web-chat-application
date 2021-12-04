@@ -1,4 +1,5 @@
-import { combineReducers } from "redux";
 import authReducer from "./auth";
+import chatReducer from "./chat";
+import { combineReducers } from "redux";
 
-export default combineReducers({ authReducer });
+export default combineReducers({ authReducer, chatReducer });

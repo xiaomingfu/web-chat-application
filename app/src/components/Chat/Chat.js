@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import FriendList from "./components/FriendList/FriendList";
 import Messenger from "./components/Messenger/Messenger";
 import Navbar from "./components/Navbar/Navbar";
+import { fetchChats } from "../../store/actions/chat";
 
 const Chat = () => {
   const dispatch = useDispatch();
