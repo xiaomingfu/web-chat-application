@@ -1,8 +1,9 @@
 import React from "react";
 import "./Friend.scss";
 import { useSelector } from "react-redux";
+import { userStatus } from "../../../../utils/helper";
 
-const Friend = ({ chat }) => {
+const Friend = ({ chat, click }) => {
   const currentChat = useSelector((state) => state.chatReducer.currentChat);
   const isChatOpened = () => {
     return currentChat.id === chat.id ? "opened" : "";
@@ -13,7 +14,7 @@ const Friend = ({ chat }) => {
     return message.type === "image" ? "image uploaded" : message.message;
   };
   return (
-    <div className={`friend-list ${isChatOpened()}`}>
+    <div onClick={click} className={`friend-list ${isChatOpened()}`}>
       <div>
         <img
           width="40"
@@ -29,7 +30,7 @@ const Friend = ({ chat }) => {
         </div>
       </div>
       <div class="friend-status">
-        <span className={`online-status`}></span>
+        <span className={`online-status ${userStatus(chat.Users[0])}`}></span>
       </div>
     </div>
   );
