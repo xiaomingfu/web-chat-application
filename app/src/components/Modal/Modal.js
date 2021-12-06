@@ -4,7 +4,9 @@ import "./Modal.scss";
 const Modal = (props) => {
   const findByKey = (name) =>
     props.children.map((child) => {
-      if (child.key === name) return child;
+      if (child.key === name) {
+        return child;
+      }
     });
 
   const closeModal = (e) => {

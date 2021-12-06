@@ -9,9 +9,30 @@ import ProtectedRoute from "./components/Router/ProtectedRoute";
 import "./App.scss";
 
 import { library } from "@fortawesome/fontawesome-svg-core";
-import { faCaretDown } from "@fortawesome/free-solid-svg-icons";
+import { faSmile, faImage } from "@fortawesome/free-regular-svg-icons";
+import {
+  faBell,
+  faCaretDown,
+  faEllipsisV,
+  faSpinner,
+  faTimes,
+  faTrash,
+  faUpload,
+  faUserPlus,
+} from "@fortawesome/free-solid-svg-icons";
 
-library.add(faCaretDown);
+library.add(
+  faCaretDown,
+  faEllipsisV,
+  faSmile,
+  faImage,
+  faSpinner,
+  faUserPlus,
+  faTrash,
+  faUpload,
+  faTimes,
+  faBell
+);
 
 function App() {
   return (
