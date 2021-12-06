@@ -1,6 +1,7 @@
 import React from "react";
 import Message from "../Message/Message";
 import { useSelector } from "react-redux";
+import "./MessageBox.scss";
 
 const MessageBox = ({ chat }) => {
   const user = useSelector((state) => state.authReducer.user);
