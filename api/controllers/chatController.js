@@ -25,6 +25,11 @@ exports.index = async (req, res) => {
           },
           {
             model: Message,
+            include: [
+              {
+                model: User,
+              },
+            ],
             limit: 20,
             order: [["id", "DESC"]],
           },
@@ -103,6 +108,11 @@ exports.create = async (req, res) => {
         },
         {
           model: Message,
+          include: [
+            {
+              model: User,
+            },
+          ],
         },
       ],
     });
